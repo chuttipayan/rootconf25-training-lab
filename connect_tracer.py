@@ -7,7 +7,7 @@ bpf_code = """
 
 int trace_connect(struct pt_regs *ctx) {
     u32 pid = bpf_get_current_pid_tgid() >> 32;
-    char comm[32];
+    char comm[16];
     bpf_get_current_comm(&comm, sizeof(comm));
     
     bpf_trace_printk("CONNECT: PID %d (%s) is making outbound connection\\n", pid, comm);
